@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Animal Stories</title>
+        
+        <link rel="stylesheet" href="slick.css">
+        <link rel="stylesheet" href="slick-theme.css">
+    
+        <audio id="dogsound" src="dogsound.mp3" preload="auto" ></audio>
+        <audio id="catsound" src="catsound.mp3" preload="auto"></audio>
+        <audio id="redpandasound" src="redpandasound.mp3" preload="auto"></audio>
+        <audio id="cowsound" src="cowsound.mp3" preload="auto"></audio>
+        <audio id="sheepsound" src="sheepsound.mp3" preload="auto"></audio>
+        <audio id="horsesound" src="horsesound.mp3" preload="auto" ></audio>
+
+    </head>
+    <script src="jquery.js"></script>
+    <script src="slick.min.js"></script>
+    <body>
+
+        <style>
+            
+            .content {
+                max-width: 900px;
+                margin: auto;
+                border-style: solid;
+                border-width: medium;
+                border-color: darkblue;
+                background-color: rgb(224, 229, 236);
+                border-radius: 10px;
+                padding: 20px;
+                font-family: Verdana, Tahoma, sans-serif; 
+            }
+
+            .buttons {
+                background-color: rgba(188, 188, 216, 0.973);
+                padding: 12px 28px;
+                border-radius: 8px;
+                font-family: Verdana, Tahoma, sans-serif;
+            }
+
+            .buttons:hover{
+                background-color: rgb(77, 77, 165);
+                color: white;
+
+            }
+          
+            .demo {
+                display: flex;
+            }
+
+            .demo .items{
+                width: 150px;
+                height: 100px;
+                margin: 30px; 
+            }
+            .demo .items img{
+                width: 150px;
+                height: 100px;
+                transition: all linear .4s;
+                margin:auto;
+            }
+
+            .demo .slick-center img{
+                transform: scale(1.3);
+            }
+
+            #printedStory{
+                font-family: cursive;
+                font-size: 20px ;
+                margin: auto;
+                width: 60%; 
+            }
+
+            #muteBut{
+                position: relative;
+                float: right;
+            }
+
+            h1 {
+                text-align:center;
+                position: relative;
+
+                 /*typewriter effect*/
+                 overflow: hidden; /* Ensures the content is not revealed until the animation */
+                white-space: nowrap;  /*Keeps the content on a single line */
+                margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+               letter-spacing: .10em; /* Adjust as needed */
+                animation: 
+                    typing 3.5s steps(40, end),
+                    blink-caret .75s step-end infinite;
+            }
+
+            h2 {
+               text-align: center;
+            }
+
+            .buttonsCenter {
+                text-align: center;
+            }
+
+            .animalImage:active{
+                animation-name: newAnimation;
+                animation-duration: 10s;
+            }
+
+            /*animation*/
+            @keyframes typing {
+                from { width: 0 }
+                to { width: 100% }
+            }
+
+
+        </style>
+        <div class = "content">
+
+         <button class = "buttons"  id = "muteBut" onclick="muteBut();" >Mute</button>
+
+        <h1>Write Your Own Story!</h1>
+
+        <b><p>Directions:</p></b>
+        
+        <p>Select three animal characters for your story. Once you have your chosen three, confirm they are in the list of selected and click "Build my Story!" to read about your animal characters. 
+        </p>
+
+
+        <h2>Animal Characters:</h2>
+        
+        <div class = "demo multiple-items">
+
+        <div class = "items">
+            <img id = "dog1" src= dog2.png width = '15%' alt =  "dog" onclick = "buildStory(dogArr); document.getElementById('dogsound').play();">
+        </div>
+
+        <div class = "items">
+            <img class = "animalImage" id = "cat1" src= cat2.png width = '15%' alt =  "cat" onclick = "buildStory(catArr); document.getElementById('catsound').play();" >
+        </div>
+
+        <div class = "items">
+            <img class = "animalImage" id= "redpanda1" src= red-panda2.png width = '15%' alt =  "red panda" onclick = "buildStory(redPandaArr); document.getElementById('redpandasound').play();">
+        </div>
+
+        <div class = "items">
+            <img class = "animalImage" id = "cow1" src= cow.png width = '15%' alt =  "cow" onclick = "buildStory(cowArr); document.getElementById('cowsound').play();" > 
+        </div>
+
+        <div class = "items"> 
+            <img class = "animalImage" id = "sheep1" src= sheep.png width = '15%' alt =  "sheep" onclick = "buildStory(sheepArr); document.getElementById('sheepsound').play();">
+         </div>
+
+        <div class = "items">
+            <img class = "animalImage" id = "horse1" alt =  "horse" src= horse.png width = '15%' onclick = "buildStory(horseArr); document.getElementById('horsesound').play();"> 
+        </div>
+
+    </div>
+
+        <br>
+        
+        <p id = "numberCart"> Number of animals selected: </p>
+        <p id = "cartCount"> </p>
+
+        <p id = "animalSel"> List of animals selected: </p>
+        <p id = "animalList"> </p>
+    
+        <br>
+
+        <div id="printedStory">
+            <b><p id = "begin"> </p></b>
+            <b><p id = "name"> </p></b>
+            <br>
+            <p id = "line1"> </p>
+            <p id = "line2"> </p>
+            <p id = "line3"> </p>
+            <p id = "line4"> </p>
+            <p id = "line5"> </p>
+        </div>
+
+        <br>
+        <div class = "buttonsCenter">
+        <button class = "buttons" id = "removeAn" onclick="removeLast()">Remove last animal chosen</button>
+
+        <button class = "buttons"  id = "But1" onclick="buttonSubmitted();">Build my Story!</button>
+
+        
+        <button  class = "buttons" id = "restart" onclick= "window.location.reload();">Build a NEW story!</button>
+    </div>
+
+        <p style = 'font-size:11px;'>&#169; Maya Friedrich, Tabitha Miles, Katie Wind 2021</p>
+
+      </div>
+
+        <script>  
+
+            var count = 0; 
+
+            var animalarr = [];
+            
+            var endings = ["After realizing what happened, they all decided it was best to part ways.", "Afterwards, they all decided to be best friends.", "And then aliens abducted them all.", "And they all lived happily ever after.", "They said good-bye and never saw each other again.", "And then a human showed up and told them all to go home."]
+
+            var catArr= ["cat", "One day, a cat went outside to play. The cat was grumpy.", "Suddenly, a cat showed up and argued with the ", "Cat came in and scared both "];
+
+            var dogArr = ["dog", "One day, a dog went for a walk. He was very happy.", "Suddenly, a dog ran up to say hello to the ", "A random dog came in and cheered up "];
+
+            var cowArr = ["cow", "One day, a cow was grazing in the fields.", "Suddenly, a cow started mooing and got the attention of the ", "A cow came in and gave free milk to "];
+
+            var sheepArr = ["sheep", "One day, a sheep jumped the gate. After exploring the sheep was very sleepy.", "Suddenly, a sheep appeared and napped with the ", "A sheep came in and said 'Go to sleep!' to "];
+
+            var redPandaArr = ["red panda", "One day, a red panda was munching on bamboo. The red panda was playful.", "Suddenly, a red panda appeared fed bamboo to the ", "A red panda came in and gave bamboo to the "];
+
+            var horseArr = ["horse", "One day, a horse was galloping across the field. The horse was feeling free.", "Suddenly, a horse galloped in and neighed at the ", "A horse came in and offered a ride to the "];
+
+            //when button is pressed
+            function buttonSubmitted(){
+                if(count<3){ //sees if you need more animals when you press button
+                    alert("You need to choose more animals.");
+                }if (count == 3){ //calls story if you have enough animals
+                    story();
+                }
+            }
+
+            //when an icon is clicked
+            function buildStory(name) {
+                animalarr.push(name); //building animal array by adding that animal's story array
+                if(count < 3)
+                    addToCart(); //if there are less than 3 animals chosen then add current animal to cart
+                else
+                    alert("You can only choose 3 animals.") //if 3 or more animals already chosen it will alert
+            } 
+
+            firstname = "";
+            lastname = "";
+
+
+            //form button - save names from form for story
+            function saveNames(){
+                firstname = document.getElementById("firstName").value;
+                lastname = document.getElementById("lastName").value;
+            }
+
+            //called when button is pressed, writes the entire story
+            function story(){
+                var end = Math.floor(Math.random()*6); //NOT SURE IF WORKING
+                var personFirst = prompt("Please enter your first name", "Harry");
+                if (personFirst == null || personFirst == "") {
+                    firstName = "Unknown";
+                } else {
+                    firstName = personFirst;
+                }
+                var personLast = prompt("Please enter your last name", "Potter");
+                if (personLast == null || personLast == "") {
+                    firstName = "Author";
+                } else {
+                    lastName = personLast;
+                }
+
+                
+                document.getElementById("begin").innerHTML = "A short story of a "+animalarr[0][0]+", a "+animalarr[1][0]+", and a "+animalarr[2][0]+"!";
+                document.getElementById("name").innerHTML = "By: " + firstName + " " + lastName;
+                document.getElementById("line1").innerHTML = animalarr[0][1];
+                document.getElementById("line2").innerHTML = animalarr[1][2]+animalarr[0][0]+".";
+                document.getElementById("line3").innerHTML = animalarr[2][3]+"the "+animalarr[0][0]+" and the "+animalarr[1][0]+".";
+                document.getElementById("line4").innerHTML = endings[end];
+                document.getElementById("line5").innerHTML = "THE END";
+                //CSS design 
+                document.getElementById("printedStory").style.borderStyle="solid";
+                document.getElementById("printedStory").style.borderWidth = "medium";
+                document.getElementById("printedStory").style.backgroundColor = "white";
+                document.getElementById("printedStory").style.borderColor = "black";
+                document.getElementById("printedStory").style.borderRadius = "10px";
+                document.getElementById("printedStory").style.padding = "20px"; 
+            }
+
+            text = "";
+            //contains counter for cart and displays number of animals selected
+            function addToCart(){
+                count ++; 
+                document.getElementById("cartCount").innerHTML = count;
+                text = animalarr[count-1][0] + ", " + text;
+                document.getElementById("animalList").innerHTML = text;
+            }
+
+            //removes last chosen animal from array
+            function removeLast(){
+                if (count ==0){
+                    alert("Empty cart")
+                    return ; 
+                }
+                else{
+                    count--;
+                }
+
+                document.getElementById("cartCount").innerHTML = count;
+            
+                if (count==0){
+                    animalarr=[];
+                    text = "";
+                    document.getElementById("animalList").innerHTML = text; 
+                    return; 
+                }
+                else {
+                    animalarr.pop();
+                }
+                
+                text = "";
+                for (i=0; i<count; i++){
+                    text = animalarr[i][0] + ", " + text;
+                    document.getElementById("animalList").innerHTML = text;   
+                }
+            }
+
+            //mute Button
+            function muteBut(){
+                if (document.getElementById('dogsound').muted==true){
+                document.getElementById('dogsound').muted=false;
+                document.getElementById('catsound').muted=false;
+                document.getElementById('horsesound').muted=false;
+                document.getElementById('redpandasound').muted=false;
+                document.getElementById('cowsound').muted=false;
+                document.getElementById('sheepsound').muted=false;
+                }
+                else{
+                document.getElementById('dogsound').muted=true;
+                document.getElementById('catsound').muted=true;
+                document.getElementById('horsesound').muted=true;
+                document.getElementById('redpandasound').muted=true;
+                document.getElementById('cowsound').muted=true;
+                document.getElementById('sheepsound').muted=true;
+                }
+            }
+
+            
+
+            //jquery plug-in Slick
+            $(function(){
+                $('.multiple-items').slick({
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                centerMode: true,
+                centerPadding: '0',
+                prevArrow:"<img class='a-left control-c prev slick-prev' src='leftArrow.png' style = 'width:5%; height:30%;' >",
+                nextArrow:"<img class='a-right control-c next slick-next' src='rightArrow.png' style = 'width:5%; height:30%;'>"
+                });
+            })
+
+        
+
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<div id CAT: 
+var cat[] = ["One day, a cat went outside to play. The cat was grumpy.", 
+"Suddenly, a cat showed up and argued with the [ANIMAL 1].",
+"Cat came in and scared both the [ANIMAL 1] and the [ANIMAL 2] away."];
+DOG:
+One day, a dog went for a walk. He was very happy.
+Suddenly, a dog ran up to say hello to [ANIMAL 1].
+A random dog came in and made everyone happy.
+COW:
+One day, a cow was grazing in the fields.
+Suddenly, a cow started mooing and got the [ANIMAL 1]’s attention.
+A cow came in and gave the [ANIMAL 1] and the [ANIMAL 2] free milk.
+SHEEP:
+var sheepArr = [ "One day, a sheep [action]. The sheep was [feeling].",
+"Suddenly, a sheep appeared [action] with the [ANIMAL 1].",
+"A cow came in and [action] to the [ANIMAL 1] and the [ANIMAL 2]."]
+RED PANDA:
+var redPandaArr = ["One day, a red panda [action]. The red panda was [feeling].",
+"Suddenly, a red panda appeared [action] with/to the [ANIMAL 1].",
+"A red panda came in and [action] with/to the [ANIMAL 1] and the [ANIMAL 2]."]
